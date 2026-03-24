@@ -21,7 +21,7 @@
 /* MAIN */
 .login-container{
   display:flex;
-  height:100vh;
+  min-height:100vh;
 }
 
 /* LEFT */
@@ -43,13 +43,12 @@
 /* BACK */
 .back{
   position:absolute;
-  top:30px;
-  left:30px;
+  top:25px;
+  left:25px;
   color:#fff;
   text-decoration:none;
   font-size:14px;
   z-index:2;
-  transition:0.3s;
 }
 
 .back:hover{
@@ -65,6 +64,7 @@
   text-align:center;
   z-index:2;
   max-width:420px;
+  width:90%;
 }
 
 .left-content h2{
@@ -72,20 +72,20 @@
 }
 
 .left-content h1{
-  font-size:42px;
-  margin:20px 0;
-  font-weight:800;
+  font-size:40px;
+  margin:15px 0;
 }
 
 .left-content p{
   opacity:0.8;
+  font-size:14px;
 }
 
 /* STATS */
 .stats{
   display:flex;
   justify-content:space-between;
-  margin-top:40px;
+  margin-top:30px;
 }
 
 .stats h3{
@@ -99,29 +99,29 @@
   justify-content:center;
   align-items:center;
   background:linear-gradient(135deg,#111,#1c1c1c);
+  padding:20px;
 }
 
-/* GLASS BOX */
+/* FORM */
 .form-box{
-  width:400px;
-  padding:40px;
+  width:100%;
+  max-width:380px;
+  padding:35px;
   border-radius:20px;
-  background:rgb(0, 0, 0);
-  backdrop-filter:blur(15px);
+  background:#000;
   border:1px solid rgba(255,255,255,0.1);
   color:#fff;
-  box-shadow:0 20px 50px rgba(0,0,0,0.6);
 }
 
 /* TITLE */
 .form-box h2{
-  font-size:32px;
+  font-size:28px;
 }
 
 .form-box p{
-  font-size:14px;
+  font-size:13px;
   opacity:0.7;
-  margin-bottom:25px;
+  margin-bottom:20px;
 }
 
 /* INPUT */
@@ -132,26 +132,21 @@ label{
 input, select{
   width:100%;
   padding:12px;
-  margin:8px 0 18px;
+  margin:8px 0 15px;
   border-radius:10px;
   border:none;
-  outline:none;
   background:rgba(255,255,255,0.08);
   color:#fff;
 }
 
-input::placeholder{
-  color:#aaa;
-}
-
-/* PASSWORD BOX */
+/* PASSWORD */
 .password-box{
   position:relative;
 }
 
 .password-box i{
   position:absolute;
-  right:15px;
+  right:12px;
   top:50%;
   transform:translateY(-50%);
   cursor:pointer;
@@ -161,69 +156,39 @@ input::placeholder{
 .row{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  font-size:13px;
-  margin-top:-5px;
+  font-size:12px;
 }
 
 .remember{
   display:flex;
   align-items:center;
-  gap:6px;
-  opacity:0.8;
+  gap:5px;
 }
 
 /* FORGOT */
 .forgot{
-  position:relative;
   color:#ffb300;
   text-decoration:none;
-  transition:0.3s;
-}
-
-.forgot::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-2px;
-  width:0%;
-  height:2px;
-  background:#ffb300;
-  transition:0.3s;
-}
-
-.forgot:hover::after{
-  width:100%;
-}
-
-.forgot:hover{
-  color:#fff;
 }
 
 /* BUTTON */
 .btn{
   width:100%;
-  padding:14px;
+  padding:13px;
   background:linear-gradient(45deg,#ffb300,#ff8800);
   border:none;
   border-radius:10px;
   color:#000;
-  font-weight:700;
-  margin-top:20px;
+  font-weight:600;
+  margin-top:15px;
   cursor:pointer;
-  transition:0.3s;
-}
-
-.btn:hover{
-  transform:scale(1.05);
-  box-shadow:0 10px 25px rgba(255,180,0,0.4);
 }
 
 /* SOCIAL */
 .social{
   display:flex;
   gap:10px;
-  margin-top:20px;
+  margin-top:15px;
 }
 
 .social button{
@@ -233,43 +198,96 @@ input::placeholder{
   border:none;
   background:rgba(255,255,255,0.08);
   color:#fff;
-  cursor:pointer;
-}
-
-.social button:hover{
-  background:#fff;
-  color:#000;
 }
 
 /* SIGNUP */
 .signup{
-  margin-top:20px;
+  margin-top:15px;
   font-size:13px;
 }
 
 .signup a{
   color:#ffb300;
 }
-select option {
-  background: #111;
-  color: #fff;
-}
-/* MOBILE */
+
+/* MOBILE FIX */
 @media(max-width:900px){
+
   .login-container{
     flex-direction:column;
   }
 
   .left{
-    height:40vh;
+    height:35vh;
+  }
+
+  .left-content h1{
+    font-size:24px;
+  }
+
+  .stats{
+    gap:10px;
+    justify-content:space-around;
+  }
+
+  .stats h3{
+    font-size:14px;
+  }
+
+  .stats p{
+    font-size:11px;
   }
 
   .right{
-    height:60vh;
+    padding:15px;
+  }
+
+  .form-box{
+    padding:25px;
+  }
+
+  .social{
+    flex-direction:column;
+  }
+
+  .back{
+    top:15px;
+    left:15px;
+    font-size:12px;
   }
 }
-.role{
-background:rgb(0, 0, 0);
+
+/* EXTRA SMALL */
+@media(max-width:480px){
+
+  .left{
+    height:30vh;
+  }
+
+  .left-content h1{
+    font-size:20px;
+  }
+
+  .form-box{
+    padding:20px;
+  }
+
+}
+select {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  appearance: none;
+}
+
+select option {
+  background: #111;
+  color: #fff;
+}
+
+/* FIX FOR WINDOWS / CHROME */
+select:focus option:checked {
+  background: #ffb300;
+  color: #000;
 }
 </style>
 </head>
@@ -278,14 +296,13 @@ background:rgb(0, 0, 0);
 
 <div class="login-container">
 
-  <!-- LEFT -->
   <div class="left">
-    <a href="home.html" class="back">← Back to Home</a>
+    <a href="home.html" class="back">← Back</a>
 
     <div class="left-content">
       <h2>Stackly</h2>
       <h1>Welcome Back!</h1>
-      <p>Sign in to continue your journey with premium sneakers.</p>
+      <p>Sign in to continue your journey.</p>
 
       <div class="stats">
         <div><h3>10K+</h3><p>Products</p></div>
@@ -295,13 +312,12 @@ background:rgb(0, 0, 0);
     </div>
   </div>
 
-  <!-- RIGHT -->
   <div class="right">
 
     <div class="form-box">
 
       <h2>Sign In</h2>
-      <p>Access your Stackly account</p>
+      <p>Access your account</p>
 
       <form id="loginForm">
 
@@ -317,21 +333,19 @@ background:rgb(0, 0, 0);
 
         <label>Password</label>
         <div class="password-box">
-          <input type="password" id="pass" placeholder="Enter password" required>
+          <input type="password" id="pass" required>
           <i onclick="togglePass()">👁</i>
         </div>
 
         <div class="row">
           <label class="remember">
-            <input type="checkbox"> Remember me
+            <input type="checkbox"> Remember
           </label>
 
-          <a href="404.html" class="forgot">
-            Forgot Password?
-          </a>
+          <a href="404.html" class="forgot">Forgot?</a>
         </div>
 
-        <button type="submit" class="btn">Sign In →</button>
+        <button type="submit" class="btn">Sign In</button>
 
       </form>
 
@@ -352,7 +366,6 @@ background:rgb(0, 0, 0);
 
 <script>
 
-// LOGIN REDIRECT
 document.getElementById("loginForm").addEventListener("submit", function(e){
   e.preventDefault();
 
@@ -365,13 +378,11 @@ document.getElementById("loginForm").addEventListener("submit", function(e){
 
   if(role === "user"){
     window.location.href = "user.html";
-  }
-  else if(role === "admin"){
+  } else {
     window.location.href = "admin.html";
   }
 });
 
-// PASSWORD TOGGLE
 function togglePass(){
   const pass = document.getElementById("pass");
   pass.type = pass.type === "password" ? "text" : "password";
