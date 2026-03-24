@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>404 - Page Not Found</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+/* BODY */
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#000,#1a1a1a);
+  color:#fff;
+  overflow:hidden;
+}
+
+/* PARTICLES BACKGROUND */
+body::before{
+  content:"";
+  position:absolute;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle, rgba(255,179,0,0.15) 1px, transparent 1px);
+  background-size:40px 40px;
+  animation:moveBg 20s linear infinite;
+}
+
+@keyframes moveBg{
+  from{ transform:translate(0,0); }
+  to{ transform:translate(-200px,-200px); }
+}
+
+/* CONTAINER */
+.container{
+  text-align:center;
+  z-index:2;
+  padding:30px;
+}
+
+/* GLOW 404 */
+h1{
+  font-size:120px;
+  font-weight:800;
+  color:#ffb300;
+  text-shadow:0 0 20px rgba(255,179,0,0.6),
+              0 0 40px rgba(255,179,0,0.4);
+  animation:float 3s ease-in-out infinite;
+}
+
+/* FLOAT ANIMATION */
+@keyframes float{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-15px); }
+}
+
+/* TEXT */
+h2{
+  margin:10px 0;
+  font-weight:600;
+}
+
+p{
+  opacity:0.7;
+  margin-bottom:25px;
+}
+
+/* BUTTON */
+.btn{
+  padding:12px 28px;
+  background:linear-gradient(45deg,#ffb300,#ff8800);
+  border:none;
+  border-radius:8px;
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 10px 25px rgba(255,179,0,0.4);
+}
+
+/* ILLUSTRATION (floating circles) */
+.circle{
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,179,0,0.15);
+  animation:floatCircle 6s ease-in-out infinite;
+}
+
+.circle1{
+  width:120px;
+  height:120px;
+  top:10%;
+  left:15%;
+}
+
+.circle2{
+  width:80px;
+  height:80px;
+  bottom:15%;
+  right:20%;
+  animation-delay:2s;
+}
+
+.circle3{
+  width:60px;
+  height:60px;
+  top:70%;
+  left:30%;
+  animation-delay:4s;
+}
+
+@keyframes floatCircle{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-25px); }
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  h1{
+    font-size:80px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING SHAPES -->
+<div class="circle circle1"></div>
+<div class="circle circle2"></div>
+<div class="circle circle3"></div>
+
+<div class="container">
+
+  <h1>404</h1>
+  <h2>Oops! Page Not Found</h2>
+  <p>The page you’re looking for doesn’t exist or was moved.</p>
+
+  <button class="btn" onclick="goBack()">← Go Back</button>
+
+</div>
+
+<script>
+
+function goBack(){
+  window.history.back();
+}
+
+</script>
+
+</body>
+</html>
