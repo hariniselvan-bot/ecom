@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Projects</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  display:flex;
+  background:#0e0e0e;
+  color:#fff;
+}
+
+a{
+  text-decoration:none;
+  color:white;
+  display:block;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;
+  height:100vh;
+  background:#111;
+  padding:20px;
+  position:fixed;
+  transition:0.3s ease;
+  z-index:1000;
+}
+
+.logo{
+  margin-bottom:30px;
+}
+
+.sidebar ul{
+  list-style:none;
+}
+
+.sidebar ul li{
+  padding:12px;
+  margin-bottom:10px;
+  border-radius:10px;
+}
+
+.sidebar ul li.active,
+.sidebar ul li:hover{
+  background:#ff7a00;
+}
+
+.bottom{
+  position:absolute;
+  bottom:20px;
+}
+
+/* MAIN */
+.main{
+  margin-left:240px;
+  width:100%;
+  padding:20px;
+}
+
+/* TOPBAR */
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  margin-bottom:20px;
+}
+
+.menu-btn{
+  display:none;
+  background:none;
+  border:none;
+  font-size:22px;
+  color:white;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+/* CARDS */
+.card{
+  background:#1a1a1a;
+  padding:20px;
+  border-radius:20px;
+}
+
+.card.large{
+  grid-column:span 2;
+}
+
+/* STATUS COLORS */
+.status{
+  padding:5px 10px;
+  border-radius:10px;
+  font-size:12px;
+  display:inline-block;
+  margin-top:10px;
+}
+
+.pending{
+  background:#ff7a00;
+}
+
+.completed{
+  background:green;
+}
+
+.progress{
+  background:#555;
+}
+
+/* PROGRESS BAR */
+.progress-bar{
+  width:100%;
+  height:8px;
+  background:#333;
+  border-radius:10px;
+  margin:10px 0;
+}
+
+.progress-bar div{
+  height:100%;
+  background:#ff7a00;
+  border-radius:10px;
+}
+
+/* BUTTON */
+button{
+  background:#333;
+  border:none;
+  padding:10px;
+  color:#fff;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+button.orange{
+  background:#ff7a00;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .sidebar{
+    left:-100%;
+  }
+
+  .sidebar.active{
+    left:0;
+  }
+
+  .main{
+    margin-left:0;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  body.active-overlay::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    top:0;
+    left:0;
+    z-index:999;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <h2 class="logo">STACKLY</h2>
+
+  <ul>
+    <li><a href="user.html">🏠 Home</a></li>
+    <li><a href="schedule.html">📅 Schedule</a></li>
+    <li><a href="reports.html">📊 Reports</a></li>
+    <li class="active"><a href="projects.html">📁 Projects</a></li>
+    <li><a href="chats.html">💬 Chats</a></li>
+  </ul>
+
+  <div class="bottom">
+    <p><a href="login.html">🚪 Logout</a></p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <h2>Projects</h2>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <!-- PROJECT 1 -->
+    <div class="card">
+      <h3>Website UI Design</h3>
+      <p>Design modern dashboard UI</p>
+      <div class="progress-bar">
+        <div style="width:70%"></div>
+      </div>
+      <span class="status progress">In Progress</span>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="card">
+      <h3>Backend API</h3>
+      <p>Develop REST API</p>
+      <div class="progress-bar">
+        <div style="width:40%"></div>
+      </div>
+      <span class="status pending">Pending</span>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="card">
+      <h3>Testing</h3>
+      <p>Test all modules</p>
+      <div class="progress-bar">
+        <div style="width:90%"></div>
+      </div>
+      <span class="status completed">Completed</span>
+    </div>
+
+    <!-- LARGE CARD -->
+    <div class="card large">
+      <h3>Project Overview</h3>
+      <p>Total Projects: 6</p>
+      <p>Completed: 3</p>
+      <p>Pending: 2</p>
+      <p>In Progress: 1</p>
+      <button class="orange">View Details</button>
+    </div>
+
+    <!-- TEAM -->
+    <div class="card large">
+      <h3>Team Members</h3>
+      <p>👩‍💻 Harini - UI Designer</p>
+      <p>👨‍💻 Arun - Backend</p>
+      <p>👨‍💻 Rahul - Tester</p>
+      <button class="orange">Manage Team</button>
+    </div>
+
+    <!-- ADD PROJECT -->
+    <div class="card">
+      <h3>Add New Project</h3>
+      <p>Create new task/project</p>
+      <button onclick="alert('New Project Added!')">+ Add</button>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function toggleMenu(){
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("active");
+  document.body.classList.toggle("active-overlay");
+}
+
+document.addEventListener("click", function(e){
+  const sidebar = document.getElementById("sidebar");
+  const menuBtn = document.querySelector(".menu-btn");
+
+  if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+    sidebar.classList.remove("active");
+    document.body.classList.remove("active-overlay");
+  }
+});
+</script>
+
+</body>
+</html>

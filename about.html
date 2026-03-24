@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Header + Banner</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  height:200vh;
+  background:#111;
+}
+
+/* NAV */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:25px 60px;
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+
+  background:transparent; /* ✅ IMPORTANT */
+  transition:0.3s ease;
+}
+
+/* SCROLL EFFECT */
+.nav.scrolled{
+  background:rgba(0,0,0,0.9);
+  backdrop-filter:blur(10px);
+}
+
+/* LEFT */
+.nav-left a{
+  color:#fff;
+  margin-right:25px;
+  text-decoration:none;
+  font-size:14px;
+  opacity:0.8;
+  transition:0.3s;
+}
+
+.nav-left a:hover{
+  opacity:1;
+}
+
+/* LOGO */
+.logo img{
+  height:35px;
+}
+
+/* RIGHT */
+.nav-right{
+  display:flex;
+  gap:15px;
+}
+
+.nav-btn{
+  padding:8px 18px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:600;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.contact{
+  border:1px solid #fff;
+  color:#fff;
+}
+
+.login{
+  background:#fff;
+  color:#000;
+}
+
+.nav-btn:hover{
+  transform:scale(1.05);
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+  background:rgba(0,0,0,0.6);
+  padding:8px;
+  border-radius:8px;
+}
+
+.hamburger span{
+  width:25px;
+  height:3px;
+  background:#fff;
+}
+
+/* MOBILE MENU */
+.mobile-menu{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:75%;
+  height:100vh;
+  background:#000;
+  padding:80px 30px;
+  transition:0.4s ease;
+  z-index:9999;
+}
+
+.mobile-menu.active{
+  right:0;
+}
+
+.mobile-menu a{
+  display:block;
+  margin:20px 0;
+  color:#fff;
+  text-decoration:none;
+  font-size:18px;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  padding-bottom:10px;
+}
+
+.mobile-menu a:hover{
+  color:#ff4d00;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .nav-left,
+  .nav-right{
+    display:none;
+  }
+
+  .hamburger{
+    display:flex;
+  }
+
+  .logo{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+  }
+}
+
+/* ===== BANNER ===== */
+.small-banner{
+  height:450px; /* 🔥 increased from 350 → 450 */
+  width:100%;
+
+  background:url("shopbg.jpg") center/cover no-repeat;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  position:relative;
+}.banner-content h1{
+  font-size:55px; /* bigger title */
+  font-weight:800;
+}
+
+.banner-content p{
+  font-size:18px;
+}/* ===== BANNER ===== */
+.small-banner{
+  height:450px;
+  width:100%;
+
+  background:url("shopbg.jpg") center/cover no-repeat;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  position:relative;
+}
+
+/* OVERLAY */
+.small-banner::before{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    rgba(0,0,0,0.8),
+    rgba(0,0,0,0.4)
+  );
+  top:0;
+  left:0;
+}
+
+/* TEXT */
+.banner-content{
+  position:relative;
+  color:#fff;
+  padding:0 20px; /* ✅ prevents text overflow */
+}
+
+.banner-content h1{
+  font-size:55px;
+  font-weight:800;
+}
+
+.banner-content p{
+  font-size:18px;
+  margin-top:10px;
+  opacity:0.85;
+}
+
+/* ===== MOBILE FIX ===== */
+@media(max-width:900px){
+
+  .small-banner{
+    height:260px; /* ✅ correct height */
+  }
+
+  .banner-content h1{
+    font-size:30px;
+  }
+
+  .banner-content p{
+    font-size:14px;
+  }
+
+}
+/* OVERLAY */
+.small-banner::before{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    rgba(0,0,0,0.8),
+    rgba(0,0,0,0.4)
+  );
+  top:0;
+  left:0;
+}
+
+/* TEXT */
+.banner-content{
+  position:relative;
+  color:#fff;
+}
+
+.banner-content h1{
+  font-size:42px;
+  font-weight:800;
+}
+
+.banner-content p{
+  font-size:15px;
+  margin-top:8px;
+  opacity:0.85;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="nav">
+  <div class="nav-left">
+    <a href="home.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="models.html">Models</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <div class="logo">
+    <img src="logo.webp" alt="logo">
+  </div>
+
+  <div class="nav-right">
+    <a href="contact.html" class="nav-btn contact">Contact</a>
+    <a href="login.html" class="nav-btn login">Login</a>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="menu">
+  <a href="home.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="models.html">Models</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html">Login</a>
+</div>
+
+<!-- BANNER -->
+<section class="small-banner">
+  <div class="banner-content">
+    <h1>About us</h1>
+    <p>Home / About us</p>
+  </div>
+</section>
+
+<!-- JS -->
+<script>
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
+
+window.addEventListener("scroll", function(){
+  const nav = document.querySelector(".nav");
+
+  if(window.scrollY > 50){
+    nav.classList.add("scrolled");
+  }else{
+    nav.classList.remove("scrolled");
+  }
+});
+</script>
+<section class="approach-section">
+
+  <h2>Our Approach</h2>
+
+  <p>
+    Discover the perfect blend of style, comfort, and durability with our latest shoe collection — designed for everyday wear, but crafted to make a statement. Whether you're navigating city streets, heading to the office, or catching up with friends, these shoes are your go-to companion for every step.
+  </p>
+
+</section>
+<style>
+    /* SECTION */
+.approach-section{
+  padding:100px 20px;
+  background:#f5f5f5;
+  text-align:center;
+}
+
+/* TITLE */
+.approach-section h2{
+  font-size:48px;
+  font-weight:700;
+  margin-bottom:30px;
+  color:#111;
+}
+
+/* TEXT */
+.approach-section p{
+  max-width:900px;
+  margin:auto;
+  font-size:22px;
+  line-height:1.6;
+  color:#111;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .approach-section{
+    padding:60px 15px;
+  }
+
+  .approach-section h2{
+    font-size:32px;
+  }
+
+  .approach-section p{
+    font-size:16px;
+  }
+
+}
+/* SECTION */
+.approach-section{
+  padding:100px 20px;
+  background:#f5f5f5;
+  text-align:center;
+}
+
+/* TITLE */
+.approach-section h2{
+  font-size:48px;
+  font-weight:700;
+  margin-bottom:30px;
+  color:#111;
+}
+
+/* TEXT */
+.approach-section p{
+  max-width:900px;
+  margin:auto;
+  font-size:22px;
+  line-height:1.6;
+  color:#111;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .approach-section{
+    padding:60px 15px;
+  }
+
+  .approach-section h2{
+    font-size:32px;
+  }
+
+  .approach-section p{
+    font-size:16px;
+  }
+
+}
+</style>
+<section class="why-section">
+
+  <h2 class="why-title">Why Choose Us?</h2>
+
+  <div class="why-container">
+
+    <div class="why-card fade">
+      <div class="icon">♻️</div>
+      <h4>Sustainable Materials</h4>
+      <p>We believe great style shouldn’t come at the planet’s expense.</p>
+    </div>
+
+    <div class="why-card fade">
+      <div class="icon">✔️</div>
+      <h4>Warranty Included</h4>
+      <p>Every pair comes with a hassle-free 6-month warranty</p>
+    </div>
+
+    <div class="why-card fade">
+      <div class="icon">🚚</div>
+      <h4>Delivery & Shipping</h4>
+      <p>Your shoes will be dispatched within 1–2 business days</p>
+    </div>
+
+    <div class="why-card fade">
+      <div class="icon">🌱</div>
+      <h4>Eco-Friendly Fabrics</h4>
+      <p>Crafted with sustainability in mind, our shoes feature eco-friendly fabrics</p>
+    </div>
+
+  </div>
+
+</section>
+<style>
+    /* SECTION */
+.why-section{
+  padding:80px 40px;
+  background:#f5f5f5;
+  text-align:center;
+}
+
+/* TITLE */
+.why-title{
+  font-size:42px;
+  font-weight:700;
+  margin-bottom:50px;
+}
+
+/* GRID */
+.why-container{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:40px;
+}
+
+/* CARD */
+.why-card{
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.6s ease;
+}
+
+/* SHOW ANIMATION */
+.why-card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ICON */
+.icon{
+  font-size:40px;
+  margin-bottom:15px;
+}
+
+/* TEXT */
+.why-card h4{
+  font-size:18px;
+  margin-bottom:10px;
+}
+
+.why-card p{
+  font-size:14px;
+  color:#555;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .why-container{
+    grid-template-columns:1fr 1fr;
+  }
+}
+</style>
+<script>
+const elements = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+elements.forEach(el => observer.observe(el));
+</script>
+<section class="mission-section">
+
+  <div class="mission-container">
+
+    <!-- IMAGE -->
+    <div class="mission-img">
+      <img src="machine.png" alt="">
+    </div>
+
+    <!-- TEXT -->
+    <div class="mission-text">
+      <h2>Our Mission</h2>
+
+      <p>
+        Discover the perfect blend of style, comfort, and durability with our latest shoe collection — designed for everyday wear.
+      </p>
+
+      <p>
+        Whether you're navigating city streets or heading to the office, our designs ensure confidence in every step.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+/* SECTION */
+.mission-section{
+  padding:80px 60px;
+  background:#f3f3f3;
+}
+
+/* CONTAINER */
+.mission-container{
+  display:flex;
+  align-items:center;
+  gap:60px;
+}
+
+/* IMAGE */
+.mission-img{
+  flex:1;
+  opacity:0;
+  transform:translateY(40px);
+  animation:fadeUp 1s ease forwards;
+}
+
+.mission-img img{
+  width:100%;
+  border-radius:20px;
+}
+
+/* TEXT */
+.mission-text{
+  flex:1;
+  opacity:0;
+  transform:translateX(80px);
+  animation:slideRight 1s ease forwards;
+  animation-delay:0.3s;
+}
+
+.mission-text h2{
+  font-size:48px;
+  font-weight:700;
+  margin-bottom:20px;
+  color:#111;
+}
+
+.mission-text p{
+  font-size:17px;
+  color:#555;
+  line-height:1.7;
+  margin-bottom:15px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes slideRight{
+  from{
+    opacity:0;
+    transform:translateX(80px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .mission-container{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .mission-text h2{
+    font-size:32px;
+  }
+}
+
+</style>
+<section class="vision-section">
+
+  <div class="vision-container">
+
+    <!-- TEXT -->
+    <div class="vision-text">
+      <h2>Our Vision</h2>
+
+      <p>
+        First the follow encourage in commas, got delicacy implemented note our wasn't go went concept. Peacefully, flatter friends links suspicion.
+      </p>
+
+      <p>
+        Has if of make called did managers rewritten him, they the made story immune theory is reported and beginning for build been did the I but the all in head. The template offered a modern and clean design that perfectly complemented the content I create.
+      </p>
+    </div>
+
+    <!-- IMAGE -->
+    <div class="vision-img">
+      <img src="vission.png" alt="">
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+/* SECTION */
+.vision-section{
+  padding:80px 60px;
+  background:#f3f3f3;
+}
+
+/* CONTAINER */
+.vision-container{
+  display:flex;
+  align-items:center;
+  gap:60px;
+}
+
+/* TEXT */
+.vision-text{
+  flex:1;
+  opacity:0;
+  transform:translateX(-80px);
+  animation:slideLeft 1s ease forwards;
+}
+
+.vision-text h2{
+  font-size:48px;
+  font-weight:700;
+  margin-bottom:20px;
+  color:#111;
+}
+
+.vision-text p{
+  font-size:17px;
+  color:#555;
+  line-height:1.7;
+  margin-bottom:15px;
+}
+
+/* IMAGE */
+.vision-img{
+  flex:1;
+  opacity:0;
+  transform:translateY(40px);
+  animation:fadeUp 1s ease forwards;
+  animation-delay:0.3s;
+}
+
+.vision-img img{
+  width:100%;
+  border-radius:20px;
+}
+
+/* ANIMATIONS */
+@keyframes slideLeft{
+  from{
+    opacity:0;
+    transform:translateX(-80px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .vision-container{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .vision-text h2{
+    font-size:32px;
+  }
+}
+
+</style>
+<section class="testimonial-section">
+
+  <!-- HEADER -->
+  <div class="testi-header">
+    <h2>What People Says</h2>
+
+    <div class="testi-arrows">
+      <span id="prev">&#8592;</span>
+      <span id="next">&#8594;</span>
+    </div>
+  </div>
+
+  <!-- SLIDER -->
+  <div class="slider">
+    <div class="testi-track" id="track">
+
+      <!-- CARD 1 -->
+      <div class="testi-card">
+        <div class="testi-img">
+          <img src="shoe1.webp">
+        </div>
+        <div class="testi-content">
+          <p>“I’ve never worn shoes this stylish that also feel like walking on clouds.”</p>
+          <div class="testi-user">
+            <img src="feed2.webp">
+            <div>
+              <h4>Harper Jackson</h4>
+              <div class="stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="testi-card">
+        <div class="testi-img">
+          <img src="shoe2.webp">
+        </div>
+        <div class="testi-content">
+          <p>“Finding shoes that fit well is hard, but these feel custom-made.”</p>
+          <div class="testi-user">
+            <img src="client-1.webp">
+            <div>
+              <h4>Mason Jack</h4>
+              <div class="stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="testi-card">
+        <div class="testi-img">
+          <img src="shoe3.webp">
+        </div>
+        <div class="testi-content">
+          <p>“Amazing comfort and premium look. Totally worth it!”</p>
+          <div class="testi-user">
+            <img src="client-3.webp">
+            <div>
+              <h4>Emma Rose</h4>
+              <div class="stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+<style>
+    /* SECTION */
+.testimonial-section{
+  padding:60px 40px;
+  background:#f5f5f5;
+}
+
+/* HEADER */
+.testi-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.testi-header h2{
+  font-size:40px;
+}
+
+/* ARROWS */
+.testi-arrows span{
+  border:1px solid #ddd;
+  padding:10px 15px;
+  margin-left:10px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* SLIDER */
+.slider{
+  overflow:hidden;
+}
+
+.testi-track{
+  display:flex;
+  transition:0.5s ease;
+}
+
+/* CARD */
+.testi-card{
+  min-width:100%;
+  display:flex;
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+/* IMAGE */
+.testi-img{
+  width:35%;
+  padding:15px;
+}
+
+.testi-img img{
+  width:100%;
+  height:220px;              /* 🔥 fixed height */
+  object-fit:cover;          /* keeps ratio clean */
+  border-radius:18px;        /* smooth rounded look */
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* CONTENT */
+.testi-content{
+  padding:25px;
+}
+
+.testi-content p{
+  font-size:18px;
+  margin-bottom:20px;
+}
+
+/* USER */
+.testi-user{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.testi-user img{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+}
+
+/* STARS */
+.stars{
+  color:orange;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .testi-card{
+    flex-direction:column;
+  }
+
+  .testi-img{
+    width:100%;
+    height:200px;
+  }
+}
+</style>
+<script>
+const track = document.getElementById("track");
+const next = document.getElementById("next");
+const prev = document.getElementById("prev");
+
+let index = 0;
+const total = track.children.length;
+
+/* SLIDE FUNCTION */
+function updateSlide(){
+  track.style.transform = `translateX(-${index * 100}%)`;
+}
+
+/* BUTTONS */
+next.onclick = () => {
+  index = (index + 1) % total;
+  updateSlide();
+};
+
+prev.onclick = () => {
+  index = (index - 1 + total) % total;
+  updateSlide();
+};
+
+/* SWIPE */
+let startX = 0;
+
+track.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+track.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+
+  if(startX - endX > 50){
+    next.onclick();
+  }else if(endX - startX > 50){
+    prev.onclick();
+  }
+});
+</script>
+
+<footer class="stackly-footer">
+
+  <div class="stackly-footer-container">
+
+    <!-- LEFT -->
+    <div class="stackly-footer-left">
+
+      <div class="stackly-footer-logo">
+        <div class="stackly-logo-box">S</div>
+        <div>
+          <h3>STACKLY</h3>
+          <p>Press</p>
+        </div>
+      </div>
+
+      <p class="stackly-footer-desc">
+        Curating timeless literature and contemporary voices. Discover stories that resonate, inspire, and endure.
+      </p>
+
+      <div class="stackly-footer-socials">
+
+  <a href="404.html">
+    <i class="fab fa-twitter"></i>
+  </a>
+
+  <a href="404.html">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="404.html">
+    <i class="fab fa-facebook"></i>
+  </a>
+
+</div>
+
+    </div>
+
+    <!-- RIGHT LINKS -->
+    <div class="stackly-footer-links">
+
+      <div>
+        <h4>Explore</h4>
+        <a href="404.html">New Releases</a>
+        <a href="404.html">Best Sellers</a>
+        <a href="404.html">Coming Soon</a>
+        <a href="404.html">Collections</a>
+        <a href="404.html">Gift Cards</a>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <a href="home.html">home</a>
+        <a href="about.html">about</a>
+        <a href="shop.html">shop</a>
+        <a href="models.html">models</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div>
+        <h4>Support</h4>
+        <a href="404.html">Help Center</a>
+        <a href="404.html">Shipping Info</a>
+        <a href="404.html">Returns</a>
+        <a href="404.html">Track Order</a>
+        <a href="404.html">FAQ</a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="stackly-footer-bottom">
+    <p>© 2026 Solitude Press. All rights reserved.</p>
+
+    <div class="stackly-footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+
+</footer>
+
+<style>
+
+/* MAIN FOOTER */
+.stackly-footer{
+  background:#eae4d3;
+  padding:60px 40px 20px;
+  border-radius:20px;
+  font-family: 'Poppins', sans-serif;
+}
+.stackly-footer-socials a{
+  margin-right:15px;
+  font-size:16px;
+  color:#333;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.stackly-footer-socials a:hover{
+  color:#000;
+  transform:translateY(-3px);
+}
+/* CONTAINER */
+.stackly-footer-container{
+  display:flex;
+  justify-content:space-between;
+  gap:40px;
+  flex-wrap:wrap;
+}
+
+/* LEFT */
+.stackly-footer-left{
+  max-width:300px;
+}
+
+.stackly-footer-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.stackly-logo-box{
+  width:40px;
+  height:40px;
+  background:#8b4513;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  border-radius:6px;
+}
+
+.stackly-footer-logo h3{
+  margin:0;
+  font-size:18px;
+}
+
+.stackly-footer-logo p{
+  margin:0;
+  font-size:12px;
+  color:#777;
+}
+
+/* DESCRIPTION */
+.stackly-footer-desc{
+  margin:20px 0;
+  font-size:13px;
+  color:#555;
+  line-height:1.6;
+}
+
+/* SOCIALS */
+.stackly-footer-socials i{
+  margin-right:15px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* LINKS */
+.stackly-footer-links{
+  display:flex;
+  gap:60px;
+}
+
+.stackly-footer-links h4{
+  margin-bottom:15px;
+  font-size:14px;
+}
+
+.stackly-footer-links a{
+  display:block;
+  margin-bottom:8px;
+  font-size:13px;
+  color:#555;
+  text-decoration:none;
+}
+
+.stackly-footer-links a:hover{
+  color:#000;
+}
+
+/* BOTTOM */
+.stackly-footer-bottom{
+  margin-top:40px;
+  padding-top:20px;
+  border-top:1px solid #ccc;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.stackly-footer-bottom p{
+  font-size:12px;
+  color:#777;
+}
+
+.stackly-footer-bottom-links a{
+  margin-left:15px;
+  font-size:12px;
+  color:#555;
+  text-decoration:none;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+  .stackly-footer-container{
+    flex-direction:column;
+  }
+
+  .stackly-footer-links{
+    flex-direction:column;
+    gap:30px;
+  }
+
+  .stackly-footer-bottom{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+
+}
+
+</style>

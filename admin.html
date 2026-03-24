@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  display:flex;
+  background:#0d0d0d;
+  color:#fff;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;
+  height:100vh;
+  background:#111;
+  padding:20px;
+  position:fixed;
+}
+
+.sidebar h2{
+  margin-bottom:30px;
+}
+
+.sidebar ul{
+  list-style:none;
+}
+
+.sidebar ul li{
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:10px;
+  cursor:pointer;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active{
+  background:#ff7a00;
+}
+
+/* MAIN */
+.main{
+  margin-left:240px;
+  width:100%;
+  padding:20px;
+}
+
+/* TOP */
+.top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:15px;
+}
+
+.stat{
+  background:#1a1a1a;
+  padding:15px;
+  border-radius:15px;
+  text-align:center;
+}
+
+.stat h3{
+  font-size:14px;
+  color:#aaa;
+}
+
+.stat h2{
+  margin-top:5px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:20px;
+  margin-top:20px;
+}
+
+/* CARD */
+.card{
+  background:#1a1a1a;
+  padding:20px;
+  border-radius:20px;
+}
+
+/* GRAPH */
+.graph{
+  height:150px;
+  background:linear-gradient(to right,#ff7a00,transparent);
+  border-radius:10px;
+  margin-top:10px;
+}
+
+/* PROGRESS */
+.progress-bar{
+  height:8px;
+  background:#333;
+  border-radius:10px;
+  margin:10px 0;
+}
+
+.progress-bar div{
+  height:100%;
+  background:#ff7a00;
+  border-radius:10px;
+}
+
+/* TEAM */
+.team-member{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:10px 0;
+}
+
+/* TABLE */
+.table{
+  margin-top:20px;
+}
+
+.table table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.table th, .table td{
+  padding:10px;
+  text-align:left;
+}
+
+.table tr{
+  background:#1a1a1a;
+  margin-bottom:10px;
+}
+
+.table tr:not(:first-child){
+  margin-top:10px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .sidebar{
+    display:none;
+  }
+
+  .main{
+    margin-left:0;
+  }
+}
+.sidebar ul li a{
+  color:white;
+  text-decoration:none;
+  display:block;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>STACKLY</h2>
+
+ <ul>
+  <li class="active"><a href="admin.html">📊 Dashboard</a></li>
+  <li><a href="analytics.html">📈 Analytics</a></li>
+  <li><a href="database.html">🗄️ Databases</a></li>
+  <li><a href="profile.html">👤 Profile</a></li>
+  <li><a href="login.html">🚪 Logout</a></li>
+</ul>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="top">
+    <h2>Main Dashboard</h2>
+    <p>👤 Admin</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><h3>Revenue</h3><h2>$3,050</h2></div>
+    <div class="stat"><h3>Spent</h3><h2>$742</h2></div>
+    <div class="stat"><h3>Reports</h3><h2>27</h2></div>
+    <div class="stat"><h3>Tasks</h3><h2>154</h2></div>
+    <div class="stat"><h3>Completed</h3><h2>2935</h2></div>
+    <div class="stat"><h3>Projects</h3><h2>32</h2></div>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <!-- LEFT -->
+    <div>
+
+      <div class="card">
+        <h3>Revenue Overview</h3>
+        <div class="graph"></div>
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <h3>Team Members</h3>
+        <div class="team-member">👩‍💻 Adela Parkson</div>
+        <div class="team-member">👨‍💻 Christian Sied</div>
+        <div class="team-member">👨‍💻 Jason Wortham</div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div>
+
+      <div class="card">
+        <h3>Project Completion</h3>
+        <p>Create</p>
+        <div class="progress-bar"><div style="width:80%"></div></div>
+        <p>Update</p>
+        <div class="progress-bar"><div style="width:60%"></div></div>
+        <p>Debug</p>
+        <div class="progress-bar"><div style="width:50%"></div></div>
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <h3>Storage</h3>
+        <div class="progress-bar"><div style="width:63%"></div></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- TABLE -->
+  <div class="table">
+    <h3>Weekly Reports</h3>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Size</th>
+        <th>Date</th>
+        <th>Time</th>
+      </tr>
+
+      <tr>
+        <td>Jonathan</td>
+        <td>In Progress</td>
+        <td>56MB</td>
+        <td>10 Jun</td>
+        <td>04:41PM</td>
+      </tr>
+
+      <tr>
+        <td>Matt</td>
+        <td>In Progress</td>
+        <td>45MB</td>
+        <td>10 Jun</td>
+        <td>04:40PM</td>
+      </tr>
+
+      <tr>
+        <td>Adela</td>
+        <td>Submitted</td>
+        <td>98MB</td>
+        <td>10 Jun</td>
+        <td>04:37PM</td>
+      </tr>
+
+      <tr>
+        <td>Miguel</td>
+        <td>Submitted</td>
+        <td>25MB</td>
+        <td>10 Jun</td>
+        <td>04:11PM</td>
+      </tr>
+
+    </table>
+  </div>
+
+</div>
+
+</body>
+</html>

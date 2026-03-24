@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chats</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  display:flex;
+  background:#0e0e0e;
+  color:#fff;
+}
+
+/* LINKS */
+a{
+  text-decoration:none;
+  color:white;
+  display:block;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;
+  height:100vh;
+  background:#111;
+  padding:20px;
+  position:fixed;
+  transition:0.3s ease;
+  z-index:1000;
+}
+
+.logo{
+  margin-bottom:30px;
+}
+
+.sidebar ul{
+  list-style:none;
+}
+
+.sidebar ul li{
+  padding:12px;
+  margin-bottom:10px;
+  border-radius:10px;
+}
+
+.sidebar ul li.active,
+.sidebar ul li:hover{
+  background:#ff7a00;
+}
+
+.bottom{
+  position:absolute;
+  bottom:20px;
+}
+
+/* MAIN */
+.main{
+  margin-left:240px;
+  width:100%;
+  padding:20px;
+}
+
+/* TOPBAR */
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  margin-bottom:20px;
+}
+
+.menu-btn{
+  display:none;
+  background:none;
+  border:none;
+  font-size:22px;
+  color:white;
+}
+
+/* CHAT LAYOUT */
+.chat-container{
+  display:grid;
+  grid-template-columns:300px 1fr;
+  height:75vh;
+  gap:20px;
+}
+
+/* CONTACT LIST */
+.contacts{
+  background:#1a1a1a;
+  border-radius:20px;
+  padding:15px;
+  overflow-y:auto;
+}
+
+.contact{
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:10px;
+  cursor:pointer;
+}
+
+.contact:hover,
+.contact.active{
+  background:#ff7a00;
+}
+
+/* CHAT BOX */
+.chat-box{
+  background:#1a1a1a;
+  border-radius:20px;
+  display:flex;
+  flex-direction:column;
+  padding:15px;
+}
+
+/* MESSAGES */
+.messages{
+  flex:1;
+  overflow-y:auto;
+  margin-bottom:10px;
+}
+
+.msg{
+  max-width:70%;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+
+.sent{
+  background:#ff7a00;
+  align-self:flex-end;
+}
+
+.received{
+  background:#333;
+}
+
+/* INPUT */
+.chat-input{
+  display:flex;
+  gap:10px;
+}
+
+.chat-input input{
+  flex:1;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+}
+
+.chat-input button{
+  background:#ff7a00;
+  border:none;
+  padding:10px 15px;
+  color:#fff;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .sidebar{
+    left:-100%;
+  }
+
+  .sidebar.active{
+    left:0;
+  }
+
+  .main{
+    margin-left:0;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .chat-container{
+    grid-template-columns:1fr;
+  }
+
+  body.active-overlay::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    top:0;
+    left:0;
+    z-index:999;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <h2 class="logo">STACKLY</h2>
+
+  <ul>
+    <li><a href="user.html">🏠 Home</a></li>
+    <li><a href="schedule.html">📅 Schedule</a></li>
+    <li><a href="reports.html">📊 Reports</a></li>
+    <li><a href="projects.html">📁 Projects</a></li>
+    <li class="active"><a href="chats.html">💬 Chats</a></li>
+  </ul>
+
+  <div class="bottom">
+    <p><a href="login.html">🚪 Logout</a></p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <h2>Chats</h2>
+  </div>
+
+  <!-- CHAT UI -->
+  <div class="chat-container">
+
+    <!-- CONTACTS -->
+    <div class="contacts">
+      <div class="contact active">👩‍💻 Harini</div>
+      <div class="contact">👨‍💻 Arun</div>
+      <div class="contact">👨‍💻 Rahul</div>
+    </div>
+
+    <!-- CHAT BOX -->
+    <div class="chat-box">
+
+      <div class="messages" id="messages">
+        <div class="msg received">Hello 👋</div>
+        <div class="msg sent">Hi! How's work?</div>
+        <div class="msg received">All good 👍</div>
+      </div>
+
+      <div class="chat-input">
+        <input type="text" id="msgInput" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function toggleMenu(){
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("active");
+  document.body.classList.toggle("active-overlay");
+}
+
+document.addEventListener("click", function(e){
+  const sidebar = document.getElementById("sidebar");
+  const menuBtn = document.querySelector(".menu-btn");
+
+  if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+    sidebar.classList.remove("active");
+    document.body.classList.remove("active-overlay");
+  }
+});
+
+// SEND MESSAGE FUNCTION
+function sendMessage(){
+  const input = document.getElementById("msgInput");
+  const messageText = input.value.trim();
+
+  if(messageText === "") return;
+
+  const msgDiv = document.createElement("div");
+  msgDiv.classList.add("msg","sent");
+  msgDiv.innerText = messageText;
+
+  document.getElementById("messages").appendChild(msgDiv);
+
+  input.value = "";
+
+  // Auto scroll
+  const messages = document.getElementById("messages");
+  messages.scrollTop = messages.scrollHeight;
+}
+</script>
+
+</body>
+</html>

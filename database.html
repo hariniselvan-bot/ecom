@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Database</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  display:flex;
+  background:#0d0d0d;
+  color:#fff;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;
+  height:100vh;
+  background:#111;
+  padding:20px;
+  position:fixed;
+}
+
+.sidebar h2{
+  margin-bottom:30px;
+}
+
+.sidebar ul{
+  list-style:none;
+}
+
+.sidebar ul li{
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+
+.sidebar ul li.active,
+.sidebar ul li:hover{
+  background:#ff7a00;
+}
+
+.sidebar ul li a{
+  color:white;
+  text-decoration:none;
+}
+
+/* MAIN */
+.main{
+  margin-left:240px;
+  width:100%;
+  padding:20px;
+}
+
+/* TOP */
+.top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+/* INPUT */
+.search-box{
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.search-box input{
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  width:200px;
+}
+
+button{
+  padding:10px 15px;
+  border:none;
+  border-radius:10px;
+  background:#ff7a00;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th, td{
+  padding:12px;
+  text-align:left;
+}
+
+tr{
+  background:#1a1a1a;
+  margin-bottom:10px;
+}
+
+tr:hover{
+  background:#222;
+}
+
+/* DELETE BUTTON */
+.delete{
+  background:red;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .sidebar{
+    display:none;
+  }
+
+  .main{
+    margin-left:0;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>STACKLY</h2>
+
+  <ul>
+    <li><a href="admin.html">📊 Dashboard</a></li>
+    <li><a href="analytics.html">📈 Analytics</a></li>
+    <li class="active"><a href="database.html">🗄️ Databases</a></li>
+    <li><a href="profile.html">👤 Profile</a></li>
+    <li><a href="login.html">🚪 Logout</a></li>
+  </ul>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="top">
+    <h2>Database Management</h2>
+    <button onclick="addUser()">+ Add User</button>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-box">
+    <input type="text" id="search" placeholder="Search user..." onkeyup="searchUser()">
+  </div>
+
+  <!-- TABLE -->
+  <table id="userTable">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Action</th>
+    </tr>
+
+    <tr>
+      <td>1</td>
+      <td>Harini</td>
+      <td>harini@gmail.com</td>
+      <td>Admin</td>
+      <td><button class="delete" onclick="deleteRow(this)">Delete</button></td>
+    </tr>
+
+    <tr>
+      <td>2</td>
+      <td>Arun</td>
+      <td>arun@gmail.com</td>
+      <td>User</td>
+      <td><button class="delete" onclick="deleteRow(this)">Delete</button></td>
+    </tr>
+
+  </table>
+
+</div>
+
+<script>
+// ADD USER
+function addUser(){
+  let name = prompt("Enter Name:");
+  let email = prompt("Enter Email:");
+  let role = prompt("Enter Role:");
+
+  if(name && email && role){
+    let table = document.getElementById("userTable");
+
+    let row = table.insertRow(-1);
+
+    row.innerHTML = `
+      <td>${table.rows.length-1}</td>
+      <td>${name}</td>
+      <td>${email}</td>
+      <td>${role}</td>
+      <td><button class="delete" onclick="deleteRow(this)">Delete</button></td>
+    `;
+  }
+}
+
+// DELETE
+function deleteRow(btn){
+  let row = btn.parentElement.parentElement;
+  row.remove();
+}
+
+// SEARCH
+function searchUser(){
+  let input = document.getElementById("search").value.toLowerCase();
+  let rows = document.querySelectorAll("#userTable tr");
+
+  rows.forEach((row, index)=>{
+    if(index === 0) return;
+
+    let text = row.innerText.toLowerCase();
+
+    row.style.display = text.includes(input) ? "" : "none";
+  });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Stackly Shoes</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  overflow-x:hidden;   /* only hide horizontal scroll */
+}.nav.scrolled{
+  background:rgba(0,0,0,0.9);
+  backdrop-filter:blur(8px);
+}
+
+/* HERO */
+.hero{
+  width:100%;
+  height:100vh;
+  background:url("bbg.webp") center/cover no-repeat;
+  position:relative;
+  color:#fff;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg, rgba(0,0,0,0.85), rgba(0,0,0,0.2));
+}
+
+/* NAV */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:30px 60px;
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+}
+
+.nav-left a{
+  color:#fff;
+  margin-right:25px;
+  text-decoration:none;
+  font-size:14px;
+  opacity:0.8;
+}
+
+.logo img{
+  height:30px;
+}
+
+.nav-right{
+  display:flex;
+  gap:15px;
+}
+
+.nav-btn{
+  padding:8px 18px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:600;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.contact{
+  border:1px solid #fff;
+  color:#fff;
+}
+
+.login{
+  background:#fff;
+  color:#000;
+}
+
+.nav-btn:hover{
+  transform:scale(1.05);
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+  background:rgba(0,0,0,0.6);
+  padding:8px;
+  border-radius:8px;
+  backdrop-filter:blur(6px);
+}
+
+.hamburger span{
+  width:25px;
+  height:3px;
+  background:#fff;
+}
+
+/* MOBILE MENU */
+.mobile-menu{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:75%;
+  height:100vh;
+
+  background:#000;            /* solid background */
+  padding:70px 30px;
+
+  transition:right 0.4s ease;
+  z-index:9999;               /* VERY IMPORTANT */
+}
+
+/* ACTIVE STATE */
+.mobile-menu.active{
+  right:0;
+}
+
+/* MENU LINKS */
+.mobile-menu a{
+  display:block;
+  margin:20px 0;
+  color:#fff;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:500;
+
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+/* HOVER EFFECT */
+.mobile-menu a:hover{
+  color:#ff4d00;
+}
+
+/* CONTENT */
+.content{
+  position:relative;
+  height:100%;
+}
+
+/* LEFT */
+.left{
+  position:absolute;
+  left:60px;
+  top:180px;
+  max-width:340px;
+}
+
+.model{
+  font-size:28px;
+  font-weight:800;
+}
+
+.model span{
+  opacity:0.6;
+}
+
+.avatars{
+  display:flex;
+  margin:15px 0;
+}
+.nav{
+  z-index:10000;
+}
+.avatars img{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  margin-right:-10px;
+}
+
+.badgee{
+  width:30px;
+  height:30px;
+  background:#d5aeae;
+  color:#000;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-left:10px;
+}
+
+.desc{
+  font-size:13px;
+  opacity:0.8;
+}
+
+.arrow-text{
+  margin-top:30px;
+  font-weight:600;
+}
+
+.btns{
+  margin-top:20px;
+}
+
+.btn{
+  padding:10px 18px;
+  border-radius:8px;
+  margin-right:10px;
+  cursor:pointer;
+}
+
+.btn-white{
+  background:#fff;
+}
+
+.btn-outline{
+  border:1px solid #fff;
+  background:transparent;
+  color:#fff;
+}
+
+/* SHOE */
+.center{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.center img{
+  width:1000px;
+  max-width:90vw;
+  filter:
+    drop-shadow(0 40px 30px rgba(0,0,0,0.6))
+    drop-shadow(0 0 25px rgba(255,50,0,0.6));
+}
+
+/* BIG TEXT */
+.big-text{
+  position:absolute;
+  right:60px;
+  top:120px;
+  font-size:70px;
+  font-weight:800;
+  opacity:0.25;
+}
+
+/* CARD */
+.right-card{
+  position:absolute;
+  right:60px;
+  bottom:80px;
+  width:180px;
+  background:rgba(255,255,255,0.1);
+  padding:12px;
+  border-radius:15px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  body{
+    overflow:auto;
+  }
+
+  .hero{
+    height:auto;
+    min-height:100vh;
+  }
+
+  .nav-left,
+  .nav-right{
+    display:none;
+  }
+
+  .hamburger{
+    display:flex;
+  }
+
+  .logo{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  .content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    padding:100px 20px;
+  }
+
+  .left{
+    position:relative;
+    left:auto;
+    top:auto;
+    order:1;
+  }
+
+  .big-text{
+    position:relative;
+    right:auto;
+    top:auto;
+    font-size:24px;
+    opacity:1;
+    order:3;
+    margin:20px 0;
+  }
+
+  .right-card{
+    position:relative;
+    right:auto;
+    bottom:auto;
+    order:4;
+    margin-top:20px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="nav">
+  <div class="nav-left">
+    <a href="home.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="models.html">Models</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <div class="logo">
+    <img src="logo.webp">
+  </div>
+
+  <div class="nav-right">
+    <a href="contact.html" class="nav-btn contact">Contact</a>
+    <a href="login.html" class="nav-btn login">Login</a>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+
+<div class="mobile-menu" id="menu">
+  <a href="home.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="models.html">Models</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html">Login</a>
+</div>
+
+<div class="content">
+
+  <div class="left">
+    <div class="model">MODEL <span>2025</span></div>
+    <div class="avatars">
+      <img src="client-1.webp">
+      <img src="client-2.webp">
+      <img src="client-3.webp">
+      <div class="badgee">7.1</div>
+    </div>
+    <div class="desc">
+      Join the future with sneakers designed for peak performance.
+    </div>
+    <div class="arrow-text">
+      STEP THROUGH THE FLAMES<br>BUILT FOR FEARLESS
+    </div>
+    <div class="btns">
+      <button class="btn btn-white">For Men</button>
+      <button class="btn btn-outline">For Women</button>
+    </div>
+  </div>
+
+  <div class="center">
+    <img src="shoe.webp">
+  </div>
+
+  <div class="big-text">
+    FROM FIRE AND<br>HEAT TO HOME<br>GROUNDS
+  </div>
+
+  <div class="right-card">
+    <img src="client-4.webp">
+    <p>Unleash the Beast</p>
+  </div>
+
+</div>
+
+</section>
+
+<script>
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
+</script>
+<script>
+window.addEventListener("scroll", function(){
+  const nav = document.querySelector(".nav");
+
+  if(window.scrollY > 50){
+    nav.classList.add("scrolled");
+  }else{
+    nav.classList.remove("scrolled");
+  }
+});
+</script>
+<section class="features">
+
+  <div class="feature">
+    <img src="ship.wepb" alt="">
+    <div>
+      <h4>FREE DELIVERY</h4>
+      <p>Free shipping on all order</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="feature">
+    <img src="support.wepb" alt="">
+    <div>
+      <h4>ONLINE SUPPORT 24/7</h4>
+      <p>Support online 24 hours</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="feature">
+    <img src="money.png" alt="">
+    <div>
+      <h4>MONEY RETURN</h4>
+      <p>Back guarantee 7 days</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="feature">
+    <img src="discount.png" alt="">
+    <div>
+      <h4>MEMBER DISCOUNT</h4>
+      <p>On every order over $130</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="feature">
+    <img src="payment.png" alt="">
+    <div>
+      <h4>SECURE PAYMENT</h4>
+      <p>All cards accepted</p>
+    </div>
+  </div>
+
+</section>
+<style>
+    /* SECTION */
+.features{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+
+  padding:30px 40px;
+  margin:40px;
+
+  background:#f5f5f5;
+  border:1px solid #ccc;
+  border-radius:10px;
+
+  flex-wrap:wrap;
+}
+
+/* EACH ITEM */
+.feature{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  min-width:200px;
+}
+
+/* ICON */
+.feature img{
+  width:45px;
+  opacity:0.7;
+}
+
+/* TEXT */
+.feature h4{
+  font-size:14px;
+  font-weight:600;
+  color:#222;
+}
+
+.feature p{
+  font-size:12px;
+  color:#555;
+}
+
+/* DIVIDER */
+.divider{
+  width:1px;
+  height:50px;
+  background:#ccc;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .features{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .divider{
+    display:none;
+  }
+
+}
+</style>
+
+<section class="promo-grid">
+
+  <!-- LEFT TOP -->
+  <div class="card fade">
+    <img src="1.webp" class="bg">
+    <img src="1.webp" class="text top-left">
+  </div>
+
+  <!-- CENTER BIG -->
+  <div class="card big fade">
+    <img src="2.webp" class="bg">
+    <img src="2.webp" class="text center-left">
+  </div>
+
+  <!-- RIGHT TOP -->
+  <div class="card fade">
+    <img src="3.webp" class="bg">
+    <img src="3.webp" class="text top-right">
+  </div>
+
+  <!-- LEFT BOTTOM -->
+  <div class="card fade">
+    <img src="4.webp" class="bg">
+    <img src="4.webp" class="text center-left">
+  </div>
+
+  <!-- RIGHT BOTTOM -->
+  <div class="card fade">
+    <img src="5.webp" class="bg">
+    <img src="5.webp" class="text center-left">
+  </div>
+
+</section>
+<style>
+    /* GRID */
+.promo-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-auto-rows:200px;
+  gap:20px;
+  padding:40px;
+}
+
+/* BIG CARD */
+.big{
+  grid-column:2/3;
+  grid-row:1/3;
+}
+
+/* CARD */
+.card{
+  position:relative;
+  overflow:hidden;
+  border-radius:10px;
+}
+
+/* BACKGROUND IMAGE */
+.bg{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* TEXT IMAGE */
+.text{
+  position:absolute;
+  max-width:70%;
+}
+
+/* POSITIONS */
+.top-left{
+  top:20px;
+  left:20px;
+}
+
+.top-right{
+  top:20px;
+  right:20px;
+}
+
+.center-left{
+  top:50%;
+  left:20px;
+  transform:translateY(-50%);
+}
+
+/* FADE ANIMATION */
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+@media(max-width:900px){
+
+  .promo-grid{
+    grid-template-columns:1fr;
+  }
+
+  .big{
+    grid-column:auto;
+    grid-row:auto;
+  }
+
+}
+</style>
+<script>
+const faders = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+faders.forEach(el => observer.observe(el));
+</script>
+
+<section class="products-section">
+
+  <h2 class="title">New Arrival / Bestseller / Featured Products</h2>
+  <p class="subtitle">
+    Our store is more than just another average online retailer.
+  </p>
+
+  <div class="products">
+
+    <!-- CARD 1 -->
+    <div class="product fade">
+      <div class="img-box">
+        <span class="badge">-10% OFF</span>
+        <img src="shoe1.webp">
+      </div>
+      <h4>AIR JORDAN XI RETRO</h4>
+      <p>Fashion Manufacturer</p>
+      <div class="price">
+        <span>$225.00</span>
+        <del>$250.00</del>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="product fade">
+      <div class="img-box">
+        <span class="badge">-10% OFF</span>
+        <img src="shoe2.webp">
+      </div>
+      <h4>BRAND ZOOM KDX EP</h4>
+      <p>Fashion Manufacturer</p>
+      <div class="price">
+        <span>$270.00</span>
+        <del>$300.00</del>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="product fade">
+      <div class="img-box">
+        <span class="badge">-10% OFF</span>
+        <img src="shoe3.webp">
+      </div>
+      <h4>BRAND FREE RN 2018</h4>
+      <p>Fashion Manufacturer</p>
+      <div class="price">
+        <span>$225.00</span>
+        <del>$250.00</del>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="product fade">
+      <div class="img-box">
+        <img src="shoe4.webp">
+      </div>
+      <h4>BRAND FREE RN FLYKNIT</h4>
+      <p>Fashion Manufacturer</p>
+      <div class="price">
+        <span>$150.00</span>
+        <del>$180.00</del>
+      </div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="product fade">
+      <div class="img-box">
+        <img src="shoe5.webp">
+      </div>
+      <h4>BRAND REACT HYPERDUNK</h4>
+      <p>Fashion Manufacturer</p>
+      <div class="price">
+        <span>$220.00</span>
+        <del>$240.00</del>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<style> /* SECTION */
+.products-section{
+  padding:60px 40px;
+  text-align:center;
+}
+
+/* TITLE */
+.title{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  color:#666;
+  margin-bottom:40px;
+}
+
+/* GRID */
+.products{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:25px;
+}
+
+/* CARD */
+.product{
+  text-align:left;
+}
+
+/* IMAGE BOX */
+.img-box{
+  background:#f2f2f2;
+  padding:20px;
+  position:relative;
+  border-radius:6px;
+}
+
+.img-box img{
+  width:100%;
+}
+
+/* BADGE */
+.badge{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:#4aa3c0;
+  color:#fff;
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:4px;
+}
+
+/* TEXT */
+.product h4{
+  margin-top:15px;
+  font-size:14px;
+}
+
+.product p{
+  font-size:12px;
+  color:#666;
+}
+
+/* PRICE */
+.price{
+  margin-top:10px;
+}
+
+.price span{
+  font-weight:600;
+}
+
+.price del{
+  color:#999;
+  margin-left:8px;
+}
+
+/* FADE BASE */
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.6s ease;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .products{
+    grid-template-columns:1fr 1fr;
+  }
+}</style>
+<script>
+const items = document.querySelectorAll('.product');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+
+      items.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('show');
+        }, index * 200);
+      });
+
+      observer.disconnect();
+    }
+  });
+});
+
+items.forEach(el => observer.observe(el));
+</script>
+<!-- PRODUCT SECTION -->
+<style>
+
+/* SECTION */
+.products-section{
+  padding:60px 40px;
+  text-align:center;
+}
+
+/* TITLE */
+.title{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  color:#666;
+  margin-bottom:40px;
+}
+
+/* GRID */
+.products{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:25px;
+}
+
+/* CARD */
+.product{
+  text-align:left;
+}
+
+/* IMAGE BOX */
+.img-box{
+  background:#f2f2f2;
+  padding:20px;
+  position:relative;
+  border-radius:6px;
+}
+
+.img-box img{
+  width:100%;
+}
+
+/* BADGE */
+.badge{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:#4aa3c0;
+  color:#fff;
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:4px;
+}
+
+/* TEXT */
+.product h4{
+  margin-top:15px;
+  font-size:14px;
+}
+
+.product p{
+  font-size:12px;
+  color:#666;
+}
+
+/* PRICE */
+.price{
+  margin-top:10px;
+}
+
+.price span{
+  font-weight:600;
+}
+
+.price del{
+  color:#999;
+  margin-left:8px;
+}
+
+/* ANIMATION BASE */
+.fade{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.fade.hidden{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.6s ease;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .products{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+</style>
+
+<script>
+
+/* FADE ONE BY ONE */
+const items = document.querySelectorAll('.product');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+
+      items.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('show');
+        }, index * 200);
+      });
+
+      observer.disconnect();
+    }
+  });
+}, { threshold:0.2 });
+
+items.forEach(el => observer.observe(el));
+
+</script>
+
+<section class="stackly-jacket-section fade-section">
+
+  <div class="stackly-overlay"></div>
+
+  <div class="stackly-content">
+    <p class="stackly-subtitle">NEW ARRIVALS 2018</p>
+
+    <h1 class="stackly-title">
+      <span>JACKET</span> SPORTWEAR
+    </h1>
+
+    <p class="stackly-desc">
+      LOOK REAL. DEFINE YOURSELF. ADD INTENSITY BE QUICK TO RECEIVE THE BEST DEALS OF THE STORE.
+    </p>
+
+    <a href="404.html" class="stackly-btn">View Collection</a>
+  </div>
+
+</section>
+
+<style>
+
+/* SECTION */
+.stackly-jacket-section{
+  position:relative;
+  height:500px;
+  margin:40px;
+  border-radius:10px;
+  overflow:hidden;
+
+  background:url("6.webp") center/cover no-repeat;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+}
+
+/* OVERLAY */
+.stackly-overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.35);
+}
+
+/* CONTENT */
+.stackly-content{
+  position:relative;
+  z-index:2;
+  max-width:700px;
+}
+
+/* TEXT */
+.stackly-subtitle{
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+.stackly-title{
+  font-size:60px;
+  font-weight:800;
+}
+
+.stackly-title span{
+  font-weight:900;
+}
+
+.stackly-desc{
+  font-size:13px;
+  margin:20px 0;
+  opacity:0.85;
+}
+
+/* BUTTON */
+.stackly-btn{
+  display:inline-block;
+  padding:12px 25px;
+  border:1px solid #fff;
+  color:#fff;
+  text-decoration:none;
+  border-radius:6px;
+  transition:0.3s;
+}
+
+.stackly-btn:hover{
+  background:#fff;
+  color:#000;
+}
+
+/* 🔥 ANIMATION */
+.fade-section{
+  opacity:0;
+  transform:translateY(60px);
+  transition:all 1s ease;
+}
+
+.fade-section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .stackly-title{
+    font-size:32px;
+  }
+
+  .stackly-jacket-section{
+    height:350px;
+    margin:20px;
+  }
+}
+
+</style>
+
+<script>
+
+/* WAIT UNTIL PAGE LOADS */
+window.addEventListener("load", () => {
+
+  const section = document.querySelector('.fade-section');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold:0.2 });
+
+  observer.observe(section);
+
+});
+
+</script>
+<section class="week-products">
+
+  <h2 class="week-title">Week Special Products</h2>
+
+  <div class="week-grid">
+
+    <!-- 15 CARDS -->
+    
+    <!-- CARD 1 -->
+    <div class="week-card">
+      <div class="week-img">
+        <span class="week-badge">-10% OFF</span>
+        <img src="shoe1.webp">
+        <div class="week-timer">
+          <div><span>0</span><p>Days</p></div>
+          <div><span>0</span><p>Hours</p></div>
+          <div><span>00</span><p>mins</p></div>
+          <div><span>00</span><p>secs</p></div>
+        </div>
+      </div>
+      <div class="week-stars">★★★★★</div>
+      <h4>AIR JORDAN XI RETRO</h4>
+      <p>Fashion Manufacturer</p>
+      <div class="week-price"><span>$225.00</span><del>$250.00</del></div>
+    </div>
+
+    <!-- REPEAT WITH DIFFERENT IMAGES -->
+    
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe14.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>BRAND FREE RN 2018</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$200.00</span><del>$210.00</del></div></div>
+
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe13.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>JORDAN BRAND RETRO</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$340.00</span><del>$350.00</del></div></div>
+
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe12.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>BRAND MAX THEA</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$105.00</span><del>$150.00</del></div></div>
+
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe11.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>BRAND REACT</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$220.00</span><del>$240.00</del></div></div>
+
+    <!-- DUPLICATED TO MAKE 15 -->
+
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe10.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>SPORT RUNNER</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$180.00</span><del>$200.00</del></div></div>
+
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe9.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>TRAINER PRO</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$190.00</span><del>$210.00</del></div></div>
+
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe8.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>ULTRA FLEX</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$160.00</span><del>$190.00</del></div></div>
+
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe6.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>SPORT EDGE</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$210.00</span><del>$250.00</del></div></div>
+
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe7.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>FAST RUN</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$140.00</span><del>$170.00</del></div></div>
+
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe5.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>POWER WALK</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$130.00</span><del>$160.00</del></div></div>
+
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe4.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>SPORT LIGHT</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$120.00</span><del>$150.00</del></div></div>
+
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe3.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>URBAN FLEX</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$150.00</span><del>$180.00</del></div></div>
+
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe2.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>RUN MASTER</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$175.00</span><del>$200.00</del></div></div>
+
+    <div class="week-card"><div class="week-img"><span class="week-badge">-10% OFF</span><img src="shoe1.webp"><div class="week-timer"><div><span>0</span><p>Days</p></div><div><span>0</span><p>Hours</p></div><div><span>00</span><p>mins</p></div><div><span>00</span><p>secs</p></div></div></div><div class="week-stars">★★★★★</div><h4>SPORT PRO MAX</h4><p>Fashion Manufacturer</p><div class="week-price"><span>$199.00</span><del>$230.00</del></div></div>
+
+  </div>
+
+</section>
+
+<style>
+
+/* SECTION */
+.week-products{
+  padding:60px 40px;
+}
+
+/* TITLE */
+.week-title{
+  text-align:center;
+  font-size:28px;
+  margin-bottom:40px;
+}
+
+/* GRID */
+.week-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:25px;
+}
+
+/* CARD */
+.week-card{
+  text-align:left;
+}
+
+/* IMAGE */
+.week-img{
+  background:#f2f2f2;
+  padding:20px;
+  position:relative;
+  border-radius:6px;
+}
+
+.week-img img{
+  width:100%;
+}
+
+/* BADGE */
+.week-badge{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:#4aa3c0;
+  color:#fff;
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:4px;
+}
+
+/* TIMER */
+.week-timer{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+}
+
+.week-timer div{
+  background:#fff;
+  padding:6px;
+  border-radius:4px;
+  font-size:12px;
+  text-align:center;
+  width:23%;
+}
+
+/* STARS */
+.week-stars{
+  color:red;
+  margin:10px 0;
+}
+
+/* TEXT */
+.week-card h4{
+  font-size:14px;
+}
+
+.week-card p{
+  font-size:12px;
+  color:#666;
+}
+
+/* PRICE */
+.week-price span{
+  font-weight:600;
+}
+
+.week-price del{
+  color:#999;
+  margin-left:8px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .week-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+/* MOBILE IMPROVEMENT */
+@media (max-width: 900px){
+  .week-products{
+    padding:40px 20px;
+  }
+
+  .week-grid{
+    grid-template-columns: 1fr 1fr;
+    gap:15px;
+  }
+
+  .week-title{
+    font-size:22px;
+    margin-bottom:25px;
+  }
+}
+
+/* SMALL MOBILE (PHONES) */
+@media (max-width: 500px){
+
+  .week-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .week-img{
+    padding:15px;
+  }
+
+  .week-card h4{
+    font-size:13px;
+  }
+
+  .week-card p{
+    font-size:11px;
+  }
+
+  .week-price span{
+    font-size:14px;
+  }
+
+  .week-price del{
+    font-size:12px;
+  }
+
+  .week-timer{
+    gap:5px;
+  }
+
+  .week-timer div{
+    font-size:10px;
+    padding:4px;
+  }
+
+  .week-badge{
+    font-size:10px;
+    padding:4px 8px;
+  }
+}
+</style>
+
+<section class="stackly-testimonials">
+
+  <h2 class="testi-title">What Our Customers Say</h2>
+
+  <div class="testi-container">
+
+    <!-- CARD 1 -->
+    <div class="testi-card fade-testi hidden">
+      <img src="client-1.webp" class="testi-img">
+      <h4>John David</h4>
+      <div class="testi-stars">★★★★★</div>
+      <p>
+        Amazing quality shoes! The comfort and style are top-notch. Highly recommended.
+      </p>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="testi-card fade-testi hidden">
+      <img src="client-2.webp" class="testi-img">
+      <h4>Sophia Lee</h4>
+      <div class="testi-stars">★★★★★</div>
+      <p>
+        Fast delivery and great support. I love the design and durability!
+      </p>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="testi-card fade-testi hidden">
+      <img src="client-3.webp" class="testi-img">
+      <h4>Michael Ross</h4>
+      <div class="testi-stars">★★★★☆</div>
+      <p>
+        Very comfortable and stylish. Worth every penny. Will buy again!
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+/* SECTION */
+.stackly-testimonials{
+  background-color: rgba(171, 84, 84, 0.671);
+  padding:80px 40px;
+  text-align:center;
+}
+
+/* TITLE */
+.testi-title{
+  font-size:28px;
+  margin-bottom:50px;
+}
+
+/* GRID */
+.testi-container{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+/* CARD */
+.testi-card{
+  background:#fff;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+  transition:0.3s;
+}
+
+.testi-card:hover{
+  transform:translateY(-10px);
+}
+
+/* IMAGE */
+.testi-img{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  margin-bottom:15px;
+}
+
+/* NAME */
+.testi-card h4{
+  margin-bottom:10px;
+}
+
+/* STARS */
+.testi-stars{
+  color:#ff4d00;
+  margin-bottom:15px;
+}
+
+/* TEXT */
+.testi-card p{
+  font-size:14px;
+  color:#666;
+}
+
+/* SAFE FADE */
+.fade-testi{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.fade-testi.hidden{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
+
+.fade-testi.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .testi-container{
+    grid-template-columns:1fr;
+  }
+}
+
+</style>
+
+<script>
+
+window.addEventListener("load", () => {
+
+  const cards = document.querySelectorAll('.fade-testi');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+
+        cards.forEach((el, i) => {
+          setTimeout(() => {
+            el.classList.add('show');
+          }, i * 200);
+        });
+
+      }
+    });
+  }, { threshold:0.2 });
+
+  cards.forEach(el => observer.observe(el));
+
+});
+
+</script>
+
+<section class="stackly-top">
+
+  <!-- TITLE -->
+  <div class="stackly-top-header">
+    <h2>Top Sellers</h2>
+    <p>Add your subtitle here</p>
+  </div>
+
+  <div class="stackly-top-container">
+
+    <!-- LEFT PRODUCTS -->
+    <div class="stackly-top-products">
+
+      <!-- CARD -->
+      <div class="stackly-top-card">
+        <img src="shoe1.webp">
+        <h4>Product Name</h4>
+        <div class="stackly-top-price">
+          <span>$16.40</span>
+          <del>$20.00</del>
+        </div>
+        <div class="stackly-top-stars">★★★★★</div>
+      </div>
+
+      <div class="stackly-top-card">
+        <img src="shoe2.webp">
+        <h4>Product Name</h4>
+        <div class="stackly-top-price">
+          <span>$16.40</span>
+          <del>$20.00</del>
+        </div>
+        <div class="stackly-top-stars">★★★★★</div>
+      </div>
+
+      <div class="stackly-top-card">
+        <img src="shoe3.webp">
+        <h4>Product Name</h4>
+        <div class="stackly-top-price">
+          <span>$16.40</span>
+          <del>$20.00</del>
+        </div>
+        <div class="stackly-top-stars">★★★★★</div>
+      </div>
+
+      <div class="stackly-top-card">
+        <img src="shoe4.webp">
+        <h4>Product Name</h4>
+        <div class="stackly-top-price">
+          <span>$16.40</span>
+          <del>$20.00</del>
+        </div>
+        <div class="stackly-top-stars">★★★★★</div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT BANNERS -->
+    <div class="stackly-top-banners">
+
+      <!-- SMALL BANNERS -->
+      <div class="stackly-top-small">
+
+        <div class="stackly-banner stackly-banner-light">
+          <img src="b.webp" alt="Banner 1">
+        </div>
+
+        <div class="stackly-banner stackly-banner-yellow">
+          <img src="bb.webp" alt="Banner 2">
+        </div>
+
+      </div>
+
+      <!-- BIG BANNER -->
+      <div class="stackly-top-big">
+        <img src="bbb.webp" alt="Big Banner">
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+/* SECTION */
+.stackly-top{
+  padding:60px 40px;
+}
+
+/* HEADER */
+.stackly-top-header{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.stackly-top-header h2{
+  font-size:28px;
+}
+
+.stackly-top-header p{
+  font-size:14px;
+  color:#777;
+}
+
+/* MAIN LAYOUT */
+.stackly-top-container{
+  display:grid;
+  grid-template-columns: 1fr 2fr;
+  gap:20px;
+}
+
+/* LEFT PRODUCTS GRID */
+.stackly-top-products{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+/* CARD */
+.stackly-top-card{
+  text-align:left;
+}
+
+.stackly-top-card img{
+  width:100%;
+  background:#f2f2f2;
+  padding:15px;
+}
+
+/* TEXT */
+.stackly-top-card h4{
+  font-size:14px;
+  margin:10px 0 5px;
+}
+
+.stackly-top-price span{
+  font-weight:600;
+}
+
+.stackly-top-price del{
+  margin-left:8px;
+  color:#999;
+}
+
+.stackly-top-stars{
+  color:orange;
+  font-size:12px;
+}
+
+/* RIGHT SIDE */
+.stackly-top-banners{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* SMALL BANNERS */
+.stackly-top-small{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.stackly-banner{
+  height:150px;
+  border-radius:6px;
+}
+
+/* COLORS (TEMP PLACEHOLDER) */
+.stackly-banner-light{
+  background:#ddd;
+}
+
+.stackly-banner-yellow{
+  background:#e0b000;
+}
+
+/* BIG BANNER */
+.stackly-top-big{
+  height:250px;
+  border-radius:6px;
+  background:#111;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+  .stackly-top{
+    padding:40px 20px;
+  }
+
+  .stackly-top-container{
+    grid-template-columns:1fr;
+  }
+
+  .stackly-top-products{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stackly-top-small{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+/* MOBILE */
+@media(max-width:500px){
+
+  .stackly-top-products{
+    grid-template-columns:1fr;
+  }
+
+  .stackly-top-small{
+    grid-template-columns:1fr;
+  }
+
+  .stackly-top-big{
+    height:200px;
+  }
+
+}
+/* FIX ALL IMAGES PERFECTLY */
+.stackly-top-card img,
+.stackly-banner img,
+.stackly-top-big img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:6px;
+  display:block;
+}
+
+/* PRODUCT IMAGE BOX FIX */
+.stackly-top-card img{
+  height:180px;
+  object-fit:contain; /* keeps shoe clean */
+  background:#f5f5f5;
+  padding:15px;
+}
+
+/* SMALL BANNERS */
+.stackly-banner{
+  height:170px;
+  overflow:hidden;
+  position:relative;
+}
+
+/* BIG BANNER */
+.stackly-top-big{
+  height:300px;
+  overflow:hidden;
+  position:relative;
+}
+
+/* HOVER EFFECT (OPTIONAL BUT PREMIUM 🔥) */
+.stackly-top-card img:hover,
+.stackly-banner img:hover,
+.stackly-top-big img:hover{
+  transform:scale(1.05);
+  transition:0.4s ease;
+}
+
+/* RESPONSIVE FIX */
+@media(max-width:900px){
+
+  .stackly-top-card img{
+    height:160px;
+  }
+
+  .stackly-banner{
+    height:150px;
+  }
+
+  .stackly-top-big{
+    height:250px;
+  }
+}
+
+/* MOBILE */
+@media(max-width:500px){
+
+  .stackly-top-card img{
+    height:150px;
+  }
+
+  .stackly-banner{
+    height:140px;
+  }
+
+  .stackly-top-big{
+    height:200px;
+  }
+}
+</style>
+
+<footer class="stackly-footer">
+
+  <div class="stackly-footer-container">
+
+    <!-- LEFT -->
+    <div class="stackly-footer-left">
+
+      <div class="stackly-footer-logo">
+        <div class="stackly-logo-box">S</div>
+        <div>
+          <h3>STACKLY</h3>
+          <p>Press</p>
+        </div>
+      </div>
+
+      <p class="stackly-footer-desc">
+        Curating timeless literature and contemporary voices. Discover stories that resonate, inspire, and endure.
+      </p>
+
+      <div class="stackly-footer-socials">
+
+  <a href="404.html">
+    <i class="fab fa-twitter"></i>
+  </a>
+
+  <a href="404.html">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="404.html">
+    <i class="fab fa-facebook"></i>
+  </a>
+
+</div>
+
+    </div>
+
+    <!-- RIGHT LINKS -->
+    <div class="stackly-footer-links">
+
+      <div>
+        <h4>Explore</h4>
+        <a href="404.html">New Releases</a>
+        <a href="404.html">Best Sellers</a>
+        <a href="404.html">Coming Soon</a>
+        <a href="404.html">Collections</a>
+        <a href="404.html">Gift Cards</a>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <a href="home.html">home</a>
+        <a href="about.html">about</a>
+        <a href="shop.html">shop</a>
+        <a href="models.html">models</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div>
+        <h4>Support</h4>
+        <a href="404.html">Help Center</a>
+        <a href="404.html">Shipping Info</a>
+        <a href="404.html">Returns</a>
+        <a href="404.html">Track Order</a>
+        <a href="404.html">FAQ</a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="stackly-footer-bottom">
+    <p>© 2026 Solitude Press. All rights reserved.</p>
+
+    <div class="stackly-footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+
+</footer>
+
+<style>
+
+/* MAIN FOOTER */
+.stackly-footer{
+  background:#eae4d3;
+  padding:60px 40px 20px;
+  border-radius:20px;
+  font-family: 'Poppins', sans-serif;
+}
+.stackly-footer-socials a{
+  margin-right:15px;
+  font-size:16px;
+  color:#333;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.stackly-footer-socials a:hover{
+  color:#000;
+  transform:translateY(-3px);
+}
+/* CONTAINER */
+.stackly-footer-container{
+  display:flex;
+  justify-content:space-between;
+  gap:40px;
+  flex-wrap:wrap;
+}
+
+/* LEFT */
+.stackly-footer-left{
+  max-width:300px;
+}
+
+.stackly-footer-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.stackly-logo-box{
+  width:40px;
+  height:40px;
+  background:#8b4513;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  border-radius:6px;
+}
+
+.stackly-footer-logo h3{
+  margin:0;
+  font-size:18px;
+}
+
+.stackly-footer-logo p{
+  margin:0;
+  font-size:12px;
+  color:#777;
+}
+
+/* DESCRIPTION */
+.stackly-footer-desc{
+  margin:20px 0;
+  font-size:13px;
+  color:#555;
+  line-height:1.6;
+}
+
+/* SOCIALS */
+.stackly-footer-socials i{
+  margin-right:15px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* LINKS */
+.stackly-footer-links{
+  display:flex;
+  gap:60px;
+}
+
+.stackly-footer-links h4{
+  margin-bottom:15px;
+  font-size:14px;
+}
+
+.stackly-footer-links a{
+  display:block;
+  margin-bottom:8px;
+  font-size:13px;
+  color:#555;
+  text-decoration:none;
+}
+
+.stackly-footer-links a:hover{
+  color:#000;
+}
+
+/* BOTTOM */
+.stackly-footer-bottom{
+  margin-top:40px;
+  padding-top:20px;
+  border-top:1px solid #ccc;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.stackly-footer-bottom p{
+  font-size:12px;
+  color:#777;
+}
+
+.stackly-footer-bottom-links a{
+  margin-left:15px;
+  font-size:12px;
+  color:#555;
+  text-decoration:none;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+  .stackly-footer-container{
+    flex-direction:column;
+  }
+
+  .stackly-footer-links{
+    flex-direction:column;
+    gap:30px;
+  }
+
+  .stackly-footer-bottom{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+
+}
+
+</style>
