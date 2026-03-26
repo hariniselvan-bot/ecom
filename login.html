@@ -16,6 +16,7 @@
   padding:0;
   box-sizing:border-box;
   font-family:'Poppins',sans-serif;
+  word-wrap:break-word;
 }
 
 /* MAIN */
@@ -49,10 +50,13 @@
   text-decoration:none;
   font-size:14px;
   z-index:2;
+  transition:0.3s;
 }
-
 .back:hover{
   color:#ffb300;
+}
+.back:active{
+  transform:scale(0.9);
 }
 
 /* LEFT CONTENT */
@@ -67,19 +71,9 @@
   width:90%;
 }
 
-.left-content h2{
-  color:#ffb300;
-}
-
-.left-content h1{
-  font-size:40px;
-  margin:15px 0;
-}
-
-.left-content p{
-  opacity:0.8;
-  font-size:14px;
-}
+.left-content h2{ color:#ffb300; }
+.left-content h1{ font-size:40px; margin:15px 0; }
+.left-content p{ opacity:0.8; font-size:14px; }
 
 /* STATS */
 .stats{
@@ -87,10 +81,7 @@
   justify-content:space-between;
   margin-top:30px;
 }
-
-.stats h3{
-  color:#ffb300;
-}
+.stats h3{ color:#ffb300; }
 
 /* RIGHT */
 .right{
@@ -100,6 +91,7 @@
   align-items:center;
   background:linear-gradient(135deg,#111,#1c1c1c);
   padding:20px;
+  position:relative;
 }
 
 /* FORM */
@@ -114,10 +106,7 @@
 }
 
 /* TITLE */
-.form-box h2{
-  font-size:28px;
-}
-
+.form-box h2{ font-size:28px; }
 .form-box p{
   font-size:13px;
   opacity:0.7;
@@ -125,25 +114,26 @@
 }
 
 /* INPUT */
-label{
-  font-size:13px;
-}
+label{ font-size:13px; }
 
 input, select{
   width:100%;
-  padding:12px;
+  padding:12px 14px;
   margin:8px 0 15px;
   border-radius:10px;
   border:none;
   background:rgba(255,255,255,0.08);
   color:#fff;
+  outline:none;
 }
 
 /* PASSWORD */
 .password-box{
   position:relative;
 }
-
+.password-box input{
+  padding-right:40px;
+}
 .password-box i{
   position:absolute;
   right:12px;
@@ -158,7 +148,6 @@ input, select{
   justify-content:space-between;
   font-size:12px;
 }
-
 .remember{
   display:flex;
   align-items:center;
@@ -190,7 +179,6 @@ input, select{
   gap:10px;
   margin-top:15px;
 }
-
 .social button{
   flex:1;
   padding:10px;
@@ -205,7 +193,6 @@ input, select{
   margin-top:15px;
   font-size:13px;
 }
-
 .signup a{
   color:#ffb300;
 }
@@ -213,36 +200,20 @@ input, select{
 /* MOBILE FIX */
 @media(max-width:900px){
 
-  .login-container{
-    flex-direction:column;
-  }
-
+  /* ❌ REMOVE LEFT COMPLETELY */
   .left{
-    height:35vh;
+    display:none;
   }
 
-  .left-content h1{
-    font-size:24px;
-  }
-
-  .stats{
-    gap:10px;
-    justify-content:space-around;
-  }
-
-  .stats h3{
-    font-size:14px;
-  }
-
-  .stats p{
-    font-size:11px;
-  }
-
+  /* ✅ FULL SCREEN FORM */
   .right{
-    padding:15px;
+    width:100%;
+    min-height:100vh;
+    padding:20px;
   }
 
   .form-box{
+    max-width:400px;
     padding:25px;
   }
 
@@ -250,44 +221,76 @@ input, select{
     flex-direction:column;
   }
 
-  .back{
-    top:15px;
-    left:15px;
-    font-size:12px;
+  /* ✅ SHOW BACK BUTTON HERE */
+  .mobile-back{
+    display:block;
+    position:absolute;
+    top:20px;
+    left:20px;
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
   }
 }
 
-/* EXTRA SMALL */
-@media(max-width:480px){
-
-  .left{
-    height:30vh;
-  }
-
-  .left-content h1{
-    font-size:20px;
-  }
-
-  .form-box{
-    padding:20px;
-  }
-
-}
-select {
-  background: rgba(255,255,255,0.08);
-  color: #fff;
-  appearance: none;
+/* DESKTOP - HIDE MOBILE BACK */
+.mobile-back{
+  display:none;
 }
 
-select option {
-  background: #111;
-  color: #fff;
+/* FORCE SHOW ON MOBILE */
+@media(max-width:900px){
+  .mobile-back{
+    display:block !important;
+    position:absolute;
+    top:20px;
+    left:20px;
+    color:#fff;
+    font-size:16px;
+    text-decoration:none;
+    z-index:999;
+  }
+}select{
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  background:rgba(255,255,255,0.08);
+  color:#fff;
+  padding:12px 40px 12px 14px;
+  border-radius:10px;
+  border:none;
+  width:100%;
+  cursor:pointer;
 }
 
-/* FIX FOR WINDOWS / CHROME */
-select:focus option:checked {
-  background: #ffb300;
-  color: #000;
+/* custom arrow */
+select{
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right 10px center;
+}.right{
+  position:relative;
+}
+select{
+  width:100%;
+  padding:12px 40px 12px 14px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  color:#fff;
+  background-color:#111; /* FIX */
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+}
+
+/* dropdown options */
+select option{
+  background:#111;
+  color:#fff;
+}
+select:focus{
+  background-color:#111;
 }
 </style>
 </head>
@@ -296,8 +299,9 @@ select:focus option:checked {
 
 <div class="login-container">
 
+  <!-- LEFT -->
   <div class="left">
-    <a href="home.html" class="back">← Back</a>
+    <a href="#" class="back" onclick="goBack()">← Back</a>
 
     <div class="left-content">
       <h2>Stackly</h2>
@@ -312,7 +316,11 @@ select:focus option:checked {
     </div>
   </div>
 
+  <!-- RIGHT -->
   <div class="right">
+
+    <!-- MOBILE BACK -->
+    <a href="home.html" class="mobile-back" onclick="goBack()">← Back</a>
 
     <div class="form-box">
 
@@ -341,7 +349,6 @@ select:focus option:checked {
           <label class="remember">
             <input type="checkbox"> Remember
           </label>
-
           <a href="404.html" class="forgot">Forgot?</a>
         </div>
 
@@ -386,6 +393,10 @@ document.getElementById("loginForm").addEventListener("submit", function(e){
 function togglePass(){
   const pass = document.getElementById("pass");
   pass.type = pass.type === "password" ? "text" : "password";
+}
+
+function goBack(){
+  window.history.back();
 }
 
 </script>
